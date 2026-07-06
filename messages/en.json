@@ -1,0 +1,9 @@
+{
+  "home": {
+    "badge": "Next.js 16 · Tailwind v4 · shadcn",
+    "title": "Kaeru",
+    "subtitle": "A typed, themeable Next.js starter wired to our design system and agent workflow.",
+    "cta": "Get started",
+    "docs": "Documentation"
+  }
+}

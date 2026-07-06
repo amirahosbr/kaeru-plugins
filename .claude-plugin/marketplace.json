@@ -1,0 +1,14 @@
+{
+  "name": "kaeru-plugins",
+  "owner": {
+    "name": "Amirah Nasihah",
+    "email": "amirah.n@osbrjp.com"
+  },
+  "plugins": [
+    {
+      "name": "kaeru",
+      "source": "./plugins/kaeru",
+      "description": "Japanese-first, guardrailed content editing for non-technical PMs: /start, /edit-text, /edit-image, /preview, /submit — git hidden, PR-only."
+    }
+  ]
+}

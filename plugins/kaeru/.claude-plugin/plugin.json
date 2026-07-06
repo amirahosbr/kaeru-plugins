@@ -1,0 +1,13 @@
+{
+  "name": "kaeru",
+  "description": "Kaeru（カエル）— lets non-technical Japanese PMs safely edit text, images and colors, in Japanese, and submit a PR for the developer to review. Git is fully hidden behind commands; the plugin never merges.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Amirah Nasihah",
+    "email": "amirah.n@osbrjp.com"
+  },
+  "homepage": "https://github.com/amirahosbr/kaeru",
+  "repository": "https://github.com/amirahosbr/kaeru",
+  "license": "MIT",
+  "keywords": ["japanese", "non-technical", "content-editing", "guardrails", "pr-workflow"]
+}
