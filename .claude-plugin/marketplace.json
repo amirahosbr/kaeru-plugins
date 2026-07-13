@@ -1,5 +1,6 @@
 {
   "name": "kaeru-plugins",
+  "description": "Amirah's Claude Code plugin marketplace: non-technical content editing (kaeru) and issue-driven GitHub workflow (gh-flow).",
   "owner": {
     "name": "Amirah Nasihah",
     "email": "amirah.n@osbrjp.com"
