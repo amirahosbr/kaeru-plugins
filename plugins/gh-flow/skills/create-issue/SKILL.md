@@ -1,5 +1,5 @@
 ---
-name: gh-issue-from-template
+name: create-issue
 description: Create a GitHub issue using this repo's issue templates, with the fields filled in from the conversation. For repos scaffolded from the amirahosbr/kaeru issue-driven template.
 ---
 
@@ -43,4 +43,6 @@ If the repo does not have these templates, this skill does not apply.
 
 5. Report the issue URL and number back to the user.
 
-Do not assign anyone or open a PR here, that is the `gh-pr-from-issue` skill. `epic` and `idea` issues never get a PR.
+Do not assign anyone or open a PR here, that is the `/create-pr` command. `epic` and `idea` issues never get a PR.
+
+Use this on its own only when the repo's `start-pull-request.yml` Action is healthy (it auto-creates the branch and PR once the issue opens). If Actions can't run right now, use `/create-pr` instead, which does this same step plus everything after it.

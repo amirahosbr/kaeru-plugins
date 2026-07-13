@@ -13,7 +13,7 @@
     {
       "name": "gh-flow",
       "source": "./plugins/gh-flow",
-      "description": "Issue-to-PR skills for repos using the kaeru issue-driven template: create an issue from its templates, and a manual branch+PR fallback for when the repo's auto-PR Action can't run."
+      "description": "Issue-to-PR flow for repos using the kaeru issue-driven template: create-issue skill for the normal path, /create-pr command as the one-shot fallback for when the repo's auto-PR Action can't run."
     }
   ]
 }
