@@ -1,0 +1,13 @@
+{
+  "name": "gh-flow",
+  "description": "Issue-to-PR flow for repos using the amirahosbr/kaeru issue-driven template: create an issue from its templates, and a manual branch+PR fallback for when the repo's auto-PR Action can't run.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Amirah Nasihah",
+    "email": "amirah.n@osbrjp.com"
+  },
+  "homepage": "https://github.com/amirahosbr/kaeru",
+  "repository": "https://github.com/amirahosbr/kaeru",
+  "license": "MIT",
+  "keywords": ["github", "issue-driven", "pr-workflow", "non-technical"]
+}
