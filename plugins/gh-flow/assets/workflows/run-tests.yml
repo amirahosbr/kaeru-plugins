@@ -1,0 +1,40 @@
+name: Run Tests
+on:
+  pull_request:
+    types: [review_requested, synchronize, labeled]
+  push:
+    branches:
+      - "main"
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  run-tests:
+    if: |
+      (github.event.action == 'review_requested' ||
+      (github.event.action == 'labeled' && github.event.label.name == 'ci-testing') ||
+      (github.event.action == 'synchronize' && contains(github.event.pull_request.labels.*.name, 'ci-testing'))) ||
+      (github.event_name == 'push')
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/github-script@v6
+        name: Set 'ci-testing' label
+        if: github.event.action == 'review_requested'
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.payload.pull_request.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ["ci-testing"]
+            })
+      - name: Build and run tests
+        run: |
+          echo "Build and run tests here"

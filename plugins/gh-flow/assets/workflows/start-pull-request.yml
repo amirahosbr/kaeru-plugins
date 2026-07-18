@@ -1,0 +1,123 @@
+name: Start Pull Request
+on:
+  issues:
+    types:
+      - opened
+      - assigned
+
+jobs:
+  start-pull-request:
+    runs-on: ubuntu-latest
+    env:
+      REPO: ${{ github.repository }}
+      ISSUE_NUM: ${{ github.event.issue.number }}
+      ISSUE_TITLE: ${{ github.event.issue.title }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    permissions:
+      id-token: write
+      issues: write
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Get open linked PR
+        id: get_open_linked_pr
+        run: |
+          open_linked_pr_length=$(\
+            gh pr list \
+              --repo $REPO \
+              --state open \
+              --search "\"Closes \#$ISSUE_NUM\" in:body" \
+              --json number | jq '. | length'\
+          )
+          echo "OPEN_LINKED_PR_LENGTH=$open_linked_pr_length" >> $GITHUB_ENV
+
+      - name: Check open linked pr length
+        if: env.OPEN_LINKED_PR_LENGTH != 0
+        run: |
+          echo "Unclosed pull request is existing."
+          exit 1
+
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Get issue labels
+        id: get_labels
+        run: |
+          labels=$(gh api /repos/$REPO/issues/$ISSUE_NUM --jq '.labels[].name' | tr '\n' ',' | sed 's/,$//')
+          echo "LABELS=$labels" >> $GITHUB_ENV
+        env:
+          REPO: ${{ github.repository }}
+          ISSUE_NUM: ${{ github.event.issue.number }}
+
+      # Terminate if the issue has "idea" or "epic" label
+      - name: Check issue type
+        run: |
+          if echo "${{ env.LABELS }}" | grep -q "idea\|epic"; then
+            echo "Issue type is either 'idea' or 'epic'. Exiting..."
+            exit 1
+          else
+            echo "Issue type is valid for pull request creation."
+          fi
+
+      - name: Get issue assignees
+        id: get_assignees
+        run: |
+          assignees=$(gh api /repos/$REPO/issues/$ISSUE_NUM --jq '.assignees[].login' | tr '\n' ',' | sed 's/,$//')
+          echo "ASSIGNEES=$assignees" >> $GITHUB_ENV
+        env:
+          REPO: ${{ github.repository }}
+          ISSUE_NUM: ${{ github.event.issue.number }}
+
+      - name: Define new branch name
+        id: define_new_branch_name
+        run: |
+          new_branch_name=$(echo "i${ISSUE_NUM}-$(TZ=UTC-9 date '+%Y%m%d-%H%M')")
+          echo "NEW_BRANCH_NAME=$new_branch_name" >> $GITHUB_ENV
+
+      - name: Create PR
+        run: |
+          body=$(cat << EOS
+          ## 1. Target
+
+          * Closes #${ISSUE_NUM}
+
+          ## 2. Specification / Test Plan
+
+          (Text here)
+
+          ## 3. Additional Instructions / Notes for Shipping (optional)
+
+          N/A
+
+          ## 4. Check before Review Request
+
+          * [ ] Self Review : I reviewed changes by myself and approved them.
+            * Ensure there is no sensitive information, typos, unrelated changes, or debugging code.
+          * [ ] Evidence : I attached evidences to prove the changes.
+            * Record and attach a demo video. For minor changes, attaching an image is also acceptable.
+            * Evidences should be updated to the latest version when further changes are made.
+
+          ## 5. Evidence
+
+          (Attach here before request review)
+          EOS
+          )
+          git config user.name  "GitHub Actions"
+          git config user.email "action@github.com"
+          git checkout -b "${{ env.NEW_BRANCH_NAME }}"
+          git commit --allow-empty -m "Initial commit for the issue #${{ github.event.issue.number }}"
+          git push origin "${{ env.NEW_BRANCH_NAME }}"
+          create_pr_args=(
+            --head "${{ env.NEW_BRANCH_NAME }}"
+            --base "${{ github.event.repository.default_branch }}"
+            --title "$ISSUE_TITLE"
+            --body "$body"
+          )
+          if [ -n "${{ env.LABELS }}" ]; then
+            create_pr_args+=(--label "${{ env.LABELS }}")
+          fi
+          if [ -n "${{ env.ASSIGNEES }}" ]; then
+            create_pr_args+=(--assignee "${{ env.ASSIGNEES }}")
+          fi
+          gh pr create \
+            "${create_pr_args[@]}"

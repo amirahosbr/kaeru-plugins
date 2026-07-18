@@ -1,17 +1,20 @@
 ---
-description: 変更をレビューに出す（PRを作成。マージはしない）
+description: Submit the change for review — open a pull request (never merges)
 allowed-tools: Bash(git add:*), Bash(git commit:*), Bash(git push:*), Bash(git branch:*), Bash(gh pr create:*)
 ---
 
-## ⚠️ ルール（必ず守る）
-- ユーザーとは**日本語**で会話する。専門用語は避ける。
-- **自分でマージしない**（レビュー・マージは Amirah さん）。
-- `main` へ直接 push しない。PR の base は必ず `main`。
+Reply to the user in their own language (Japanese or English). Keep it simple and
+non-technical.
 
-## 手順
-1. 変更内容を確認し、日本語でわかりやすいコミットメッセージを作る。
-2. `git add -A && git commit`。
-3. `git push -u origin <現在のブランチ>`。
-4. `gh pr create --base main`（タイトル・本文は日本語で、何を変更したかを簡潔に）。**マージは絶対にしない。**
-5. 作成された PR の URL を伝え、こう案内する:
-   「Amirah さんがレビューします。Vercel のプレビューURLは PR に表示されます。」
+## Rules (always)
+- Never merge yourself — the developer reviews and merges.
+- Never push directly to `main`. The PR base is always `main`.
+
+## Steps
+1. Review the change and write a clear commit message.
+2. `git add -A && git commit`.
+3. `git push -u origin <current-branch>`.
+4. Open the PR with `gh pr create --base main` — a short, plain title and body describing
+   what changed. **Never merge.**
+5. Give the user the PR URL and tell them: the developer will review it, and the Vercel
+   preview URL will appear in the PR.

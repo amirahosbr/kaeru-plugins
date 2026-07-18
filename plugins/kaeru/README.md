@@ -17,7 +17,7 @@ Lets non-technical Japanese PMs safely edit **text, images, and colors** and sub
 
 ## Design
 
-- **Japanese-first** — all PM conversation is in Japanese.
+- **Language-mirroring** — replies to the PM in whatever language they write (Japanese or English).
 - **Framework-neutral** — the per-repo map lives in `.kaeru/where.md` (written by
   `/kaeru:setup`), never baked into the plugin (D16).
 - **PR-only** — `/kaeru:submit` opens a PR; only the developer merges (D6).

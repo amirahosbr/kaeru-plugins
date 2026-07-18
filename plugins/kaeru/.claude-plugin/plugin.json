@@ -1,6 +1,6 @@
 {
   "name": "kaeru",
-  "description": "Kaeru（カエル）— lets non-technical Japanese PMs safely edit text, images and colors, in Japanese, and submit a PR for the developer to review. Git is fully hidden behind commands; the plugin never merges.",
+  "description": "Kaeru（カエル）— lets non-technical PMs safely edit text, images and colors in their own language (Japanese or English), and submit a PR for the developer to review. Git is fully hidden behind commands; the plugin never merges.",
   "version": "0.1.0",
   "author": {
     "name": "Amirah Nasihah",

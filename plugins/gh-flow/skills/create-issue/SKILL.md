@@ -14,7 +14,9 @@ This template's issue templates live in `.github/ISSUE_TEMPLATE/`:
 - `TMPL_05_EPIC.yml` - umbrella issue, no PR follows (label: epic)
 - `TMPL_06_IDEA.yml` - idea or proposal, no PR follows (label: idea)
 
-If the repo does not have these templates, this skill does not apply.
+If the repo does not have these templates, don't stop — offer to run `/gh-flow:setup` first
+(it scaffolds the issue + PR templates, and optionally the auto-PR workflows). Once
+scaffolded, continue below.
 
 ## Steps
 

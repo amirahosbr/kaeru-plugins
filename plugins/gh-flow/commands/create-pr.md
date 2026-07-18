@@ -17,6 +17,9 @@ place they'd be in if the Action had run.
 
 ## Steps
 
+0. **If this repo has no `.github/ISSUE_TEMPLATE/`**, its labels and templates don't exist
+   yet — offer to run `/gh-flow:setup` first (scaffolds them), or proceed with a plain issue
+   and a generic label.
 1. From `$ARGUMENTS` (or the conversation if empty), work out what changed and pick the
    matching template: Addition, Modification, Refactoring, Fix, Epic, or Idea. Ask if unclear.
    `epic` and `idea` never get a PR - stop after the issue for those.

@@ -1,19 +1,22 @@
 ---
-description: サイトの文言（テキスト）を変更する
-argument-hint: 変更したい内容（例: トップの見出しを「ようこそ」に）
+description: Change wording or copy on the site
+argument-hint: what to change (e.g. "change the homepage heading to Welcome")
 allowed-tools: Read, Edit, Grep, Glob
 ---
 
-## ⚠️ ルール（必ず守る）
-- ユーザーとは**日本語**で会話する。専門用語は避ける。
-- 変更してよいのは**テキスト**のみ。ロジック・設定・依存関係・トークン名には触れない。
-- `main` で直接作業しない。**自分でマージしない**。迷ったら `/kaeru:help`。
+Reply to the user in their own language (Japanese or English). Keep it simple and
+non-technical.
 
-## 手順
-ユーザーの依頼: $ARGUMENTS
+## Rules (always)
+- Only change text. Never touch logic, config, dependencies, or token names.
+- Never work on `main`; never merge. If unsure, use `/kaeru:help`.
 
-1. リポジトリの地図 `.kaeru/where.md` があれば読む。なければ対象のテキストを探す。
-2. 対象が見つからない・候補が複数あるときは、**勝手に決めず**ユーザーに確認する。
-3. 変更する。多言語サイトなら対応する他言語の文言も更新する。
-4. 変更内容を「**変更前 → 変更後**」の形で日本語で見せる。
-5. 「`/kaeru:preview` で確認できます」と案内する。
+## Steps
+The user's request: $ARGUMENTS
+
+1. Read the repo map `.kaeru/where.md` if present; otherwise find the target text.
+2. If you can't find it, or there are several matches, ask the user — don't guess.
+3. Make the change. On a multilingual site, update the matching text in the other
+   languages too.
+4. Show the change as **before → after**.
+5. Tell them they can check it with `/kaeru:preview`.

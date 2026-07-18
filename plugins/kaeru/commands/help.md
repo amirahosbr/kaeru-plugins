@@ -1,16 +1,16 @@
 ---
-description: エラーや困ったことを、やさしく説明して対処する
+description: Explain an error gently and help fix it
 allowed-tools: Read, Bash(git status:*), Bash(git log:*)
 ---
 
-ユーザーとは**日本語**で会話する。専門用語は使わない。
+Reply to the user in their own language (Japanese or English). Never use technical jargon.
 
-## 手順
-1. 直近のエラーや状況を確認し、**専門用語を使わず**に何が起きたかを説明する。
-2. ルールの範囲内で安全に直せるなら直す。ブランチやコミットは壊さない。
-3. 自分で解決できない場合は、Amirah さんにそのまま転送できる**日本語のメモ**を作る:
-   - 何をしていたか
-   - 何が起きたか
-   - エラーメッセージ（あれば）
+## Steps
+1. Look at the recent error or situation and explain, in plain words, what happened.
+2. If it's safe to fix within the rules, fix it. Don't break the branch or commits.
+3. If you can't resolve it, write a short memo the user can forward to the developer:
+   - what they were doing
+   - what happened
+   - the error message (if any)
 
-危険な操作（強制 push・`main` の操作・ファイル削除）は絶対に行わない。
+Never do anything risky (force push, touching `main`, deleting files).

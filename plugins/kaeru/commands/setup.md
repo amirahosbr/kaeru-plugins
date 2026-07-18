@@ -1,19 +1,19 @@
 ---
-description: (開発者向け・リポジトリごとに一度) フレームワークを検出し .kaeru/where.md を作成
+description: (Developer, once per repo) Detect the framework and write .kaeru/where.md
 allowed-tools: Read, Glob, Grep, Write, Bash(ls:*), Bash(cat:*)
 ---
 
-**開発者（Amirah さん）が、Kaeru を新しいリポジトリに導入するときに一度だけ実行する。PM 向けではない。**
+For the **developer** to run once when adding Kaeru to a repo — not for PMs.
 
-編集コマンドはフレームワーク非依存に保つ。リポジトリごとに違うのは「どこに何があるか」の地図だけ（D16）。
+Keep the edit commands framework-neutral; only this per-repo map differs (D16).
 
-## 手順
-1. スタックを検出する: `package.json`（依存 + scripts）、ロックファイル、フォルダ構成を読む。
-2. このリポジトリ用に `.kaeru/where.md` を作成し、次を記載する:
-   - **UI テキスト**の場所（i18n メッセージファイル、および/またはコンポーネント）
-   - **画像・静的アセット**の場所
-   - **色・デザイントークン**の場所（値のみ変更可）
-   - **開発サーバー**の起動コマンド + ローカル URL
-   - **パッケージマネージャー**
-   - **PR の base ブランチ**
-3. 作成した地図を開発者に確認してもらう。
+## Steps
+1. Detect the stack: read `package.json` (deps + scripts), lockfiles, and the folder layout.
+2. Write `.kaeru/where.md` for THIS repo, describing:
+   - UI text location(s) — i18n message files and/or components
+   - Images / static assets location
+   - Colors / design tokens location (values only)
+   - Dev server command + local URL
+   - Package manager
+   - PR base branch
+3. Confirm the map back to the developer.

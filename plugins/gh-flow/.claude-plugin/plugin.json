@@ -1,6 +1,6 @@
 {
   "name": "gh-flow",
-  "description": "Issue-to-PR flow for repos using the amirahosbr/kaeru issue-driven template: create-issue skill for the normal path, /create-pr command as the one-shot fallback (issue, branch, PR, switch) for when the repo's auto-PR Action can't run.",
+  "description": "Issue-to-PR flow for the kaeru issue-driven template. /gh-flow:setup scaffolds the issue + PR templates (and optional auto-PR / release workflows) into any repo; create-issue is the normal path; /create-pr is the one-shot fallback (issue, branch, PR, switch) when the repo's auto-PR Action can't run.",
   "version": "0.1.0",
   "author": {
     "name": "Amirah Nasihah",
