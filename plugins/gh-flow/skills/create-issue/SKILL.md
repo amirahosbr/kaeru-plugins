@@ -1,6 +1,6 @@
 ---
 name: create-issue
-description: Create a GitHub issue using this repo's issue templates, with the fields filled in from the conversation. For repos scaffolded from the amirahosbr/kaeru issue-driven template.
+description: Create a GitHub issue using this repo's issue templates, with the fields filled in from the conversation. For repos scaffolded from the amirahosbr/kaeru-plugins issue-driven template.
 ---
 
 # Create GitHub Issue From Template

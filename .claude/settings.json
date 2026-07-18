@@ -17,7 +17,7 @@
     "kaeru-plugins": {
       "source": {
         "source": "github",
-        "repo": "amirahosbr/kaeru"
+        "repo": "amirahosbr/kaeru-plugins"
       }
     }
   },

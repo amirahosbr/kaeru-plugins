@@ -26,7 +26,7 @@ Lets non-technical Japanese PMs safely edit **text, images, and colors** and sub
 ## Install
 
 ```bash
-/plugin marketplace add amirahosbr/kaeru      # or a local path for testing
+/plugin marketplace add amirahosbr/kaeru-plugins   # or a local path for testing
 /plugin install kaeru@kaeru-plugins
 ```
 

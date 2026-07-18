@@ -6,8 +6,8 @@
     "name": "Amirah Nasihah",
     "email": "amirah.n@osbrjp.com"
   },
-  "homepage": "https://github.com/amirahosbr/kaeru",
-  "repository": "https://github.com/amirahosbr/kaeru",
+  "homepage": "https://github.com/amirahosbr/kaeru-plugins",
+  "repository": "https://github.com/amirahosbr/kaeru-plugins",
   "license": "MIT",
   "keywords": ["japanese", "non-technical", "content-editing", "guardrails", "pr-workflow"]
 }
