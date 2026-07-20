@@ -1,63 +1,80 @@
-# Template
+# kaeru-plugins 🐸
 
-GitHub repository template with issue-driven workflow, automated pull requests, CI, and CalVer-based releases.
+Amirah's Claude Code **plugin marketplace**. It hosts two plugins:
 
-## Overview
+| Plugin | What it does |
+|--------|--------------|
+| **kaeru** | Lets non-technical people safely edit a website's text, images, and colors — in their own language — and submit a PR for the developer to review. Git is hidden; it never merges. |
+| **gh-flow** | Issue → PR → CI helpers for the developer, including `/gh-flow:setup` which scaffolds the issue/PR templates into any repo. |
 
-- **Issue templates** for Addition, Modification, Refactoring, Fix, Epic, and Idea
-- **Auto PR creation** when an issue is assigned (except for idea/epic)
-- **CI** on pull requests (with `ci-testing` label) and on push to `main`
-- **Release flow**: `main` → release PR → `release` branch → deploy and publish release notes (CalVer)
+> This is **not** a website or an app you "run". It's a set of commands you install into
+> Claude Code and then type (e.g. `/kaeru:start`).
 
-## Branches
+---
 
-| Branch   | Purpose |
-|----------|--------|
-| `main`   | Default branch. Feature PRs target this. Pushing here triggers a release-candidate PR to `release`. |
-| `release`| Production branch. Merging the release-candidate PR here runs deployment and publishes the release. |
+## How to use it (start here)
 
-The `release` branch is created automatically on the first run of **Prepare Release** if it does not exist.
+### Requirements
+- **Claude Code** installed ([claude.com/claude-code](https://claude.com/claude-code))
+- **git** and the **GitHub CLI** (`gh`) — logged in (`gh auth login`)
+- **Node** (and **bun** or npm) — only needed for the live preview
+- First time only, for preview screenshots: `npx playwright install chromium`
 
-## Workflows
+> Setting up a fresh machine? Run the one-command installer in [`setup/`](./setup)
+> (`install-macos.sh` or `install-windows.ps1`) — it installs everything above.
 
-### Start Pull Request
+### Step 1 — Install the plugin (once)
+Open Claude Code and type:
 
-- **Trigger:** Issue assigned
-- **Behavior:** Creates a branch and pull request linked to the issue (skipped for issues labeled `idea` or `epic`)
+```
+/plugin marketplace add amirahosbr/kaeru-plugins
+/plugin install kaeru@kaeru-plugins
+/reload-plugins
+```
 
-### Run Tests
+*(Testing locally before it's pushed to GitHub? Use the folder path instead:*
+`/plugin marketplace add /Users/amirah/Developer/person/kaeru`*)*
 
-- **Trigger:** Push to `main`, or pull request with `ci-testing` label (e.g. when review is requested)
-- **Behavior:** Runs build and tests (replace placeholder step with your real test commands)
+### Step 2 — Prepare a project (developer, once per website)
+Open Claude Code **inside the website's project folder**, then:
 
-### Prepare Release
+```
+/kaeru:setup
+```
 
-- **Trigger:** Push to `main`
-- **Behavior:** Ensures `release` exists; opens/updates a release-candidate PR from `main` to `release` using [git-pr-release](https://github.com/motemen/git-pr-release) (PRs must have label `release-candidate`)
+This looks at the project and writes a small map (`.kaeru/where.md`) so the edit commands
+know where the text, images, and colors live.
 
-### Release
+### Step 3 — Make a change (this is what the non-tech user does)
+Still inside the project, just type these one at a time:
 
-- **Trigger:** Merge of a PR into `release`
-- **Behavior:** Runs deployment, then drafts and publishes a GitHub release with CalVer version and changelog from [release-drafter](https://github.com/release-drafter/release-drafter)
+```
+/kaeru:start              → opens a fresh, safe workspace
+/kaeru:edit-text          → say what to change, e.g. "change the homepage heading to Welcome"
+/kaeru:preview            → see the change live in the browser
+/kaeru:submit             → sends it to the developer to review (opens a PR — never merges)
+```
 
-## Issue types and release notes
+That's it. You describe changes in plain words; Claude replies in your language (Japanese or
+English) and hides all the git details.
 
-Release notes are generated from PR labels:
+### If something goes wrong
+- `/kaeru:status` — "is my change OK?" (checks, review, conflicts, in plain words)
+- `/kaeru:fix` — a check failed? explains it and fixes the simple ones
+- `/kaeru:undo` — go back safely
+- `/kaeru:help` — explains any error and writes a note for the developer
 
-- `addition` → Addition
-- `modification` → Modification
-- `refactoring` → Refactoring
-- `fix` → Fix
+See the full command list in **[plugins/kaeru/README.md](./plugins/kaeru/README.md)**.
 
-Use the matching issue template so PRs get the right label when created from an issue.
+---
 
-## Setup
+## For developers
 
-1. Use this repo as a template or copy the `.github/` directory into your project.
-2. In **Run Tests**, replace the placeholder step with your real build/test commands.
-3. In **Release**, replace the deployment placeholder with your deployment steps.
-4. If your default branch is not `main`, update the branch names in the workflows accordingly.
+- Plugin sources live in [`plugins/`](./plugins); the marketplace is `.claude-plugin/marketplace.json`.
+- Planning, decisions (D1–D27), and architecture are in [`docs/planning/`](./docs/planning).
+- Changes are tracked in [`CHANGELOG.md`](./CHANGELOG.md).
+- This repo uses an issue-driven GitHub flow (issue → auto PR → CI → CalVer release). The
+  same flow can be dropped into any repo with `/gh-flow:setup`.
 
 ## License
-
 See [LICENSE](LICENSE) if present.
