@@ -12,7 +12,12 @@ Lets non-technical Japanese PMs safely edit **text, images, and colors** and sub
 | `/kaeru:edit-image` | PM | Swap an image |
 | `/kaeru:preview` | PM | Run the dev server + open the browser to self-check |
 | `/kaeru:submit` | PM | Commit, push, open a PR to `main` (does **not** merge) |
-| `/kaeru:help` | PM | Explain an error gently + produce a Japanese memo for the dev |
+| `/kaeru:status` | PM | Check if the change is OK — CI checks, review, conflicts, in plain words |
+| `/kaeru:fix` | PM | When checks fail, explain and fix the simple/safe ones (lint/format/typo) |
+| `/kaeru:undo` | PM | Undo the last change safely — easy to go back |
+| `/kaeru:switch` | PM | Switch to or resume another change you were working on |
+| `/kaeru:help` | PM | Explain an error gently + produce a memo for the dev |
+| `/kaeru:learn` | PM | Interactive guided tutorial — practice the whole flow |
 | `/kaeru:setup` | **Dev** | Run once per repo: detect framework, write `.kaeru/where.md` |
 
 ## Design

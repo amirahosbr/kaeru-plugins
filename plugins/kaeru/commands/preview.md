@@ -6,6 +6,9 @@ allowed-tools: Bash(bun dev:*), Bash(bun run dev:*), Bash(npm run dev:*), Bash(p
 Reply to the user in their own language (Japanese or English). Keep it simple and
 non-technical.
 
+## Rules (always)
+- This command only **previews** — it never changes the site, commits, or pushes.
+
 ## Steps
 1. Start the dev server in the background using the "dev server" command from
    `.kaeru/where.md` (default `bun dev`).
