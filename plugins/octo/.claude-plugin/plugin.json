@@ -1,0 +1,13 @@
+{
+  "name": "octo",
+  "description": "GitHub + CI/CD workflow toolkit for developers: repo init, issue → PR → merge, and scaffolding the issue-driven templates/workflows into any repo. /octo:init bootstraps a repo; create-issue + /octo:create-pr open work; /octo:merge lands a reviewed PR; /octo:setup scaffolds templates and optional Actions; /octo:whoami + /octo:config check and set up your git + GitHub identity.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Amirah Nasihah",
+    "email": "amirah.n@osbrjp.com"
+  },
+  "homepage": "https://github.com/amirahosbr/kaeru-plugins",
+  "repository": "https://github.com/amirahosbr/kaeru-plugins",
+  "license": "MIT",
+  "keywords": ["github", "issue-driven", "pr-workflow", "non-technical"]
+}

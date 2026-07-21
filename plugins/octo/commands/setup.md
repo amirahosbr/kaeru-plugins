@@ -4,9 +4,9 @@ argument-hint: add "with-workflows" to also install the Actions (auto-PR, tests,
 allowed-tools: Bash(mkdir:*), Bash(cp:*), Bash(ls:*), Bash(test:*), Bash(echo:*), Read
 ---
 
-# /gh-flow:setup
+# /octo:setup
 
-Scaffolds this repo so the `create-issue` skill and `/gh-flow:create-pr` work — even on a
+Scaffolds this repo so the `create-issue` skill and `/octo:create-pr` work — even on a
 repo that has none of the templates yet. Bundled sources live in `${CLAUDE_PLUGIN_ROOT}/assets/`.
 
 ## Steps
@@ -37,6 +37,6 @@ repo that has none of the templates yet. Bundled sources live in `${CLAUDE_PLUGI
    - The `release` branch is created automatically on the first release run.
 
 4. **Report** what was created (list the files), then point to next steps: create an issue with
-   the `create-issue` skill, or run `/gh-flow:create-pr` for the one-shot fallback.
+   the `create-issue` skill, or run `/octo:create-pr` for the one-shot fallback.
 
 If the person isn't technical, keep it plain — don't dwell on git/workflow jargon.

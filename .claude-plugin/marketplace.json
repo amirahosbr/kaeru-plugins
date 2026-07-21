@@ -1,6 +1,6 @@
 {
   "name": "kaeru-plugins",
-  "description": "Amirah's Claude Code plugin marketplace: non-technical content editing (kaeru) and issue-driven GitHub workflow (gh-flow).",
+  "description": "Amirah's Claude Code plugin marketplace: non-technical content editing (kaeru) and issue-driven GitHub workflow (octo).",
   "owner": {
     "name": "Amirah Nasihah",
     "email": "amirah.n@osbrjp.com"
@@ -12,8 +12,8 @@
       "description": "Japanese-first, guardrailed content editing for non-technical PMs: /start, /edit-text, /edit-image, /preview, /submit — git hidden, PR-only."
     },
     {
-      "name": "gh-flow",
-      "source": "./plugins/gh-flow",
+      "name": "octo",
+      "source": "./plugins/octo",
       "description": "Issue-to-PR flow for repos using the kaeru issue-driven template: create-issue skill for the normal path, /create-pr command as the one-shot fallback for when the repo's auto-PR Action can't run."
     }
   ]

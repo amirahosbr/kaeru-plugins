@@ -11,13 +11,13 @@ in its own `plugin.json`. (GitHub Release notes are generated separately by rele
 - **kaeru:** `/kaeru:fix` — explain failing checks and fix the simple, safe ones (lint / format / typo); escalates anything risky to the developer.
 - **kaeru:** `/kaeru:undo` — undo the last change safely; never rewrites pushed history, never force-pushes.
 - **kaeru:** `/kaeru:switch` — resume another change; work is shown by PR title, and unsaved edits are kept safe (stash) before switching.
-- **gh-flow:** `/gh-flow:setup` — scaffold `.github` issue + PR templates (and, optionally, the auto-PR / release workflows) into any repo. Canonical templates are bundled as plugin assets.
+- **octo:** `/octo:setup` — scaffold `.github` issue + PR templates (and, optionally, the auto-PR / release workflows) into any repo. Canonical templates are bundled as plugin assets.
 
 ### Changed
 - **kaeru:** command sources rewritten in English with **language-mirroring** — the agent replies in the user's own language (Japanese or English); Japanese is produced at runtime, not hardcoded. Maintainable by a non-Japanese-reading developer.
 - **kaeru:** uniform guardrail coverage across all 12 commands (explicit `Rules` blocks, or safe-by-nature notes for read-only / dev-only / tutorial commands).
-- **gh-flow:** `create-issue` and `/gh-flow:create-pr` now detect a missing template set and offer `/gh-flow:setup` instead of bailing out.
-- **Repo:** renamed `kaeru` → `kaeru-plugins` (it's a marketplace hosting `kaeru` + `gh-flow`, not a single plugin). Internal references updated (settings, both `plugin.json`, README, create-issue skill).
+- **octo:** `create-issue` and `/octo:create-pr` now detect a missing template set and offer `/octo:setup` instead of bailing out.
+- **Repo:** renamed `kaeru` → `kaeru-plugins` (it's a marketplace hosting `kaeru` + `octo`, not a single plugin). Internal references updated (settings, both `plugin.json`, README, create-issue skill).
 
 ## kaeru 0.1.0 — Kaeru plugin (MVP)
 
@@ -27,8 +27,8 @@ in its own `plugin.json`. (GitHub Release notes are generated separately by rele
 - Framework-neutral: the per-repo map lives in `.kaeru/where.md`, written by `/kaeru:setup`.
 - Playwright MCP bundled for visual before/after preview.
 
-## gh-flow 0.1.0 — GitHub issue-to-PR flow
+## octo 0.1.0 — GitHub issue-to-PR flow
 
 ### Added
 - `create-issue` skill — create a GitHub issue from the repo's templates.
-- `/gh-flow:create-pr` — one-shot fallback (issue → branch → PR → switch) for when the repo's auto-PR Action can't run.
+- `/octo:create-pr` — one-shot fallback (issue → branch → PR → switch) for when the repo's auto-PR Action can't run.

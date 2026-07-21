@@ -14,7 +14,7 @@ This template's issue templates live in `.github/ISSUE_TEMPLATE/`:
 - `TMPL_05_EPIC.yml` - umbrella issue, no PR follows (label: epic)
 - `TMPL_06_IDEA.yml` - idea or proposal, no PR follows (label: idea)
 
-If the repo does not have these templates, don't stop — offer to run `/gh-flow:setup` first
+If the repo does not have these templates, don't stop — offer to run `/octo:setup` first
 (it scaffolds the issue + PR templates, and optionally the auto-PR workflows). Once
 scaffolded, continue below.
 
@@ -45,6 +45,6 @@ scaffolded, continue below.
 
 5. Report the issue URL and number back to the user.
 
-Do not assign anyone or open a PR here, that is the `/create-pr` command. `epic` and `idea` issues never get a PR.
+Do not assign anyone or open a PR here, that is the `/octo:create-pr` command. `epic` and `idea` issues never get a PR.
 
-Use this on its own only when the repo's `start-pull-request.yml` Action is healthy (it auto-creates the branch and PR once the issue opens). If Actions can't run right now, use `/create-pr` instead, which does this same step plus everything after it.
+Use this on its own only when the repo's `start-pull-request.yml` Action is healthy (it auto-creates the branch and PR once the issue opens). If Actions can't run right now, use `/octo:create-pr` instead, which does this same step plus everything after it.

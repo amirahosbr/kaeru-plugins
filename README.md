@@ -5,7 +5,7 @@ Amirah's Claude Code **plugin marketplace**. It hosts two plugins:
 | Plugin | What it does |
 |--------|--------------|
 | **kaeru** | Lets non-technical people safely edit a website's text, images, and colors — in their own language — and submit a PR for the developer to review. Git is hidden; it never merges. |
-| **gh-flow** | Issue → PR → CI helpers for the developer, including `/gh-flow:setup` which scaffolds the issue/PR templates into any repo. |
+| **octo** | Issue → PR → CI helpers for the developer, including `/octo:setup` which scaffolds the issue/PR templates into any repo. |
 
 > This is **not** a website or an app you "run". It's a set of commands you install into
 > Claude Code and then type (e.g. `/kaeru:start`).
@@ -74,7 +74,7 @@ See the full command list in **[plugins/kaeru/README.md](./plugins/kaeru/README.
 - Planning, decisions (D1–D27), and architecture are in [`docs/planning/`](./docs/planning).
 - Changes are tracked in [`CHANGELOG.md`](./CHANGELOG.md).
 - This repo uses an issue-driven GitHub flow (issue → auto PR → CI → CalVer release). The
-  same flow can be dropped into any repo with `/gh-flow:setup`.
+  same flow can be dropped into any repo with `/octo:setup`.
 
 ## License
 See [LICENSE](LICENSE) if present.

@@ -1,0 +1,188 @@
+<title>kaeru-plugins</title>
+<style>
+  :root {
+    --paper:#F4F5EF; --surface:#FBFBF6; --ink:#1B1E19; --ink-soft:#565C4F;
+    --matcha:#3F7A55; --matcha-2:#2E5C3F;
+    --ocean:#3E6D9C; --ocean-2:#2C527A;
+    --line:rgba(27,30,25,0.12); --shadow:0 1px 2px rgba(27,30,25,.04),0 8px 24px rgba(27,30,25,.05);
+  }
+  :root[data-theme="light"]{ color-scheme:light; }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#10130D; --surface:#181C12; --ink:#ECEDE3; --ink-soft:#A4AB98;
+      --matcha:#7FB891; --matcha-2:#A6D3B2;
+      --ocean:#8AB0DA; --ocean-2:#AECBEA;
+      --line:rgba(236,237,227,0.13); --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme:dark;
+    --paper:#10130D; --surface:#181C12; --ink:#ECEDE3; --ink-soft:#A4AB98;
+    --matcha:#7FB891; --matcha-2:#A6D3B2; --ocean:#8AB0DA; --ocean-2:#AECBEA;
+    --line:rgba(236,237,227,0.13); --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+  }
+  :root{
+    --serif:"Yu Mincho","YuMincho","Hiragino Mincho ProN","Songti SC",Georgia,serif;
+    --sans:"Hiragino Kaku Gothic ProN","Yu Gothic",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    --mono:"SF Mono",ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:820px;margin:0 auto;padding:0 24px;}
+  .eyebrow{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--ink-soft);}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.6rem,7vw,4.2rem);line-height:1;margin:0;letter-spacing:-.01em;}
+  h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.4rem,3.4vw,1.9rem);margin:0 0 .3rem;text-wrap:balance;}
+  p{margin:0 0 1rem;}
+  a{color:var(--matcha-2);}
+
+  header.hero{padding:clamp(52px,11vw,96px) 0 clamp(32px,6vw,52px);border-bottom:1px solid var(--line);}
+  .hero .mono-tag{font-family:var(--mono);font-size:.8rem;color:var(--ink-soft);margin-bottom:1.2rem;}
+  .hero .lede{font-size:clamp(1.05rem,2.3vw,1.3rem);line-height:1.5;max-width:46ch;margin-top:1.2rem;}
+  .hero .note{color:var(--ink-soft);margin-top:.8rem;max-width:52ch;font-size:.95rem;}
+
+  section{padding:clamp(38px,6vw,58px) 0;border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:0;}
+
+  .plugins{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:1.4rem;}
+  .pcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:var(--shadow);border-top:4px solid var(--edge);}
+  .pcard.k{--edge:var(--matcha);}
+  .pcard.o{--edge:var(--ocean);}
+  .pcard .icon{font-size:1.8rem;}
+  .pcard h3{font-family:var(--serif);font-size:1.4rem;margin:.4rem 0 .1rem;}
+  .pcard .who{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:var(--edge);}
+  .pcard p{margin:.6rem 0 0;color:var(--ink-soft);font-size:.95rem;}
+  .pcard .count{margin-top:.8rem;font-family:var(--mono);font-size:.8rem;color:var(--ink-soft);}
+  @media (max-width:600px){.plugins{grid-template-columns:1fr;}}
+
+  .cmds{display:grid;grid-template-columns:1fr 1fr;gap:2px 20px;margin-top:1.3rem;}
+  .cmd{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:baseline;padding:9px 2px;border-bottom:1px solid var(--line);}
+  .cmd code{font-family:var(--mono);font-size:.82rem;font-weight:600;white-space:nowrap;}
+  .cmd .d{color:var(--ink-soft);font-size:.86rem;line-height:1.45;}
+  .sec-k code{color:var(--matcha-2);} .sec-o code{color:var(--ocean-2);}
+  .sec-k .eyebrow{color:var(--matcha-2);} .sec-o .eyebrow{color:var(--ocean-2);}
+  @media (max-width:640px){.cmds{grid-template-columns:1fr;}}
+
+  pre{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px;overflow-x:auto;box-shadow:var(--shadow);}
+  code{font-family:var(--mono);}
+  pre code{font-size:.86rem;line-height:1.7;color:var(--ink);}
+  .cmt{color:var(--ink-soft);}
+
+  .fit{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:center;margin-top:1.4rem;}
+  .fit .box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:var(--shadow);}
+  .fit .box.k{border-left:4px solid var(--matcha);}
+  .fit .box.o{border-left:4px solid var(--ocean);}
+  .fit .arrow{font-family:var(--mono);color:var(--ink-soft);text-align:center;}
+  .fit h4{margin:0 0 .3rem;font-family:var(--serif);}
+  .fit p{margin:0;color:var(--ink-soft);font-size:.9rem;}
+  @media (max-width:600px){.fit{grid-template-columns:1fr;}.fit .arrow{transform:rotate(90deg);}}
+
+  footer{padding:36px 0 60px;color:var(--ink-soft);font-size:.85rem;}
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="mono-tag">amirahosbr/kaeru-plugins</div>
+    <span class="eyebrow">Claude Code plugin marketplace</span>
+    <h1>kaeru-plugins</h1>
+    <p class="lede">Two plugins for shipping small website changes safely — one for the people who make them, one for the developer who reviews them.</p>
+    <p class="note">Not a website or an app. It's a set of commands you install into Claude Code and then type — like <code>/kaeru:start</code>.</p>
+  </div>
+</header>
+
+<main>
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">What's inside</span>
+      <h2>Two plugins, two audiences</h2>
+      <div class="plugins">
+        <div class="pcard k">
+          <div class="icon">🐸</div>
+          <span class="who">for non-technical staff</span>
+          <h3>kaeru</h3>
+          <p>Safely edit a website's text, images and colors — in your own language (Japanese or English) — and submit a PR for review. Git is hidden; it never merges.</p>
+          <div class="count">12 commands · Playwright preview · PR-only</div>
+        </div>
+        <div class="pcard o">
+          <div class="icon">🐙</div>
+          <span class="who">for the developer</span>
+          <h3>octo</h3>
+          <p>A GitHub + CI/CD toolkit: set up identity, bootstrap a repo, run the issue → PR → merge flow, watch CI, and scaffold the issue-driven templates into any repo.</p>
+          <div class="count">11 commands · GitHub + CI/CD · dev-facing</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec-k">
+    <div class="wrap">
+      <span class="eyebrow">🐸 kaeru — commands</span>
+      <h2>The editing journey</h2>
+      <div class="cmds">
+        <div class="cmd"><code>/kaeru:start</code><span class="d">Open a fresh, safe workspace</span></div>
+        <div class="cmd"><code>/kaeru:edit-text</code><span class="d">Change wording or copy</span></div>
+        <div class="cmd"><code>/kaeru:edit-image</code><span class="d">Swap an image</span></div>
+        <div class="cmd"><code>/kaeru:preview</code><span class="d">See it live in the browser</span></div>
+        <div class="cmd"><code>/kaeru:submit</code><span class="d">Open a PR for review (never merges)</span></div>
+        <div class="cmd"><code>/kaeru:status</code><span class="d">Is my change OK? checks + review</span></div>
+        <div class="cmd"><code>/kaeru:fix</code><span class="d">A check failed? fix the simple ones</span></div>
+        <div class="cmd"><code>/kaeru:undo</code><span class="d">Go back safely</span></div>
+        <div class="cmd"><code>/kaeru:switch</code><span class="d">Resume another change</span></div>
+        <div class="cmd"><code>/kaeru:help</code><span class="d">Explain an error + memo for the dev</span></div>
+        <div class="cmd"><code>/kaeru:learn</code><span class="d">Interactive guided tutorial</span></div>
+        <div class="cmd"><code>/kaeru:setup</code><span class="d">Dev: map the repo (once)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec-o">
+    <div class="wrap">
+      <span class="eyebrow">🐙 octo — commands</span>
+      <h2>GitHub + CI/CD toolkit</h2>
+      <div class="cmds">
+        <div class="cmd"><code>/octo:init</code><span class="d">Bootstrap a repo (git + GitHub + push)</span></div>
+        <div class="cmd"><code>/octo:config</code><span class="d">Set up git + GitHub identity</span></div>
+        <div class="cmd"><code>/octo:whoami</code><span class="d">Who am I acting as? where?</span></div>
+        <div class="cmd"><code>/octo:create-issue</code><span class="d">Issue from template</span></div>
+        <div class="cmd"><code>/octo:create-pr</code><span class="d">One-shot issue → branch → PR</span></div>
+        <div class="cmd"><code>/octo:merge</code><span class="d">Merge a reviewed PR (checks first)</span></div>
+        <div class="cmd"><code>/octo:checks</code><span class="d">View or re-run CI checks</span></div>
+        <div class="cmd"><code>/octo:release</code><span class="d">Cut a release</span></div>
+        <div class="cmd"><code>/octo:cleanup</code><span class="d">Delete merged branches</span></div>
+        <div class="cmd"><code>/octo:sync-templates</code><span class="d">Refresh bundled templates</span></div>
+        <div class="cmd"><code>/octo:setup</code><span class="d">Scaffold templates + workflows</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">Install</span>
+      <h2>Add the marketplace, then pick a plugin</h2>
+      <pre><code><span class="cmt"># 1) add the marketplace once</span>
+/plugin marketplace add amirahosbr/kaeru-plugins
+
+<span class="cmt"># 2) install what you need</span>
+/plugin install kaeru@kaeru-plugins    <span class="cmt"># non-technical staff</span>
+/plugin install octo@kaeru-plugins     <span class="cmt"># the developer</span>
+
+/reload-plugins</code></pre>
+      <p class="note" style="color:var(--ink-soft);font-size:.92rem;">The two are independent — install one or both. A repo's <code>.claude/settings.json</code> can auto-enable a plugin for whoever opens it.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">How they fit</span>
+      <h2>Front of house, back of house</h2>
+      <div class="fit">
+        <div class="box k"><h4>🐸 kaeru</h4><p>The non-tech person makes a change and submits it. Everything scary is hidden.</p></div>
+        <div class="arrow">→ PR →</div>
+        <div class="box o"><h4>🐙 octo</h4><p>The developer's GitHub machinery — templates, CI, merge — keeps the review flow running.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">kaeru-plugins · a Claude Code plugin marketplace · 🐸 edit safely · 🐙 ship cleanly</div>
+</footer>

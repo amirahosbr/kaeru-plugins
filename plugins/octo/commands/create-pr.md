@@ -4,7 +4,7 @@ argument-hint: what changed (e.g. "fix the broken submit button on the pricing p
 allowed-tools: Bash(gh issue create:*), Bash(gh issue view:*), Bash(git checkout:*), Bash(git commit:*), Bash(git push:*), Bash(gh pr create:*), Bash(date:*)
 ---
 
-# /create-pr
+# /octo:create-pr
 
 One-shot fallback for when this repo's `start-pull-request.yml` Action cannot run (Actions
 minutes exhausted, workflow disabled, etc). Normally the Action does everything from the
@@ -18,7 +18,7 @@ place they'd be in if the Action had run.
 ## Steps
 
 0. **If this repo has no `.github/ISSUE_TEMPLATE/`**, its labels and templates don't exist
-   yet — offer to run `/gh-flow:setup` first (scaffolds them), or proceed with a plain issue
+   yet — offer to run `/octo:setup` first (scaffolds them), or proceed with a plain issue
    and a generic label.
 1. From `$ARGUMENTS` (or the conversation if empty), work out what changed and pick the
    matching template: Addition, Modification, Refactoring, Fix, Epic, or Idea. Ask if unclear.
