@@ -76,6 +76,16 @@
   .fit p{margin:0;color:var(--ink-soft);font-size:.9rem;}
   @media (max-width:600px){.fit{grid-template-columns:1fr;}.fit .arrow{transform:rotate(90deg);}}
 
+  .flow-steps{list-style:none;counter-reset:s;padding:0;margin:1.4rem 0 0;display:grid;gap:8px;}
+  .flow-steps li{position:relative;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--edge);border-radius:10px;padding:14px 16px 14px 52px;box-shadow:var(--shadow);}
+  .flow-steps li.k{--edge:var(--matcha);} .flow-steps li.o{--edge:var(--ocean);} .flow-steps li.d{--edge:var(--ink-soft);}
+  .flow-steps li::before{counter-increment:s;content:counter(s);position:absolute;left:13px;top:13px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-size:.76rem;font-weight:600;color:#fff;background:var(--edge);}
+  @media (prefers-color-scheme:dark){.flow-steps li::before{color:#10130D;}}
+  :root[data-theme="dark"] .flow-steps li::before{color:#10130D;}
+  .flow-steps code{font-family:var(--mono);font-size:.82rem;font-weight:600;color:var(--ink);}
+  .flow-steps .lbl{display:block;color:var(--ink-soft);font-size:.9rem;margin-top:.2rem;}
+  .flow-steps .actor{font-size:.66rem;text-transform:uppercase;letter-spacing:.08em;font-weight:700;color:var(--edge);}
+
   footer{padding:36px 0 60px;color:var(--ink-soft);font-size:.85rem;}
 </style>
 
@@ -100,14 +110,14 @@
           <span class="who">for non-technical staff</span>
           <h3>kaeru</h3>
           <p>Safely edit a website's text, images and colors — in your own language (Japanese or English) — and submit a PR for review. Git is hidden; it never merges.</p>
-          <div class="count">12 commands · Playwright preview · PR-only</div>
+          <div class="count">15 commands · Playwright preview · PR-only</div>
         </div>
         <div class="pcard o">
           <div class="icon">🐙</div>
           <span class="who">for the developer</span>
           <h3>octo</h3>
           <p>A GitHub + CI/CD toolkit: set up identity, bootstrap a repo, run the issue → PR → merge flow, watch CI, and scaffold the issue-driven templates into any repo.</p>
-          <div class="count">11 commands · GitHub + CI/CD · dev-facing</div>
+          <div class="count">12 commands · GitHub + CI/CD · dev-facing</div>
         </div>
       </div>
     </div>
@@ -127,6 +137,9 @@
         <div class="cmd"><code>/kaeru:fix</code><span class="d">A check failed? fix the simple ones</span></div>
         <div class="cmd"><code>/kaeru:undo</code><span class="d">Go back safely</span></div>
         <div class="cmd"><code>/kaeru:switch</code><span class="d">Resume another change</span></div>
+        <div class="cmd"><code>/kaeru:edit-color</code><span class="d">Change a color (token values)</span></div>
+        <div class="cmd"><code>/kaeru:resolve</code><span class="d">Merge conflict — safe ones, else escalate</span></div>
+        <div class="cmd"><code>/kaeru:check-a11y</code><span class="d">Easy for everyone (accessibility)</span></div>
         <div class="cmd"><code>/kaeru:help</code><span class="d">Explain an error + memo for the dev</span></div>
         <div class="cmd"><code>/kaeru:learn</code><span class="d">Interactive guided tutorial</span></div>
         <div class="cmd"><code>/kaeru:setup</code><span class="d">Dev: map the repo (once)</span></div>
@@ -145,6 +158,7 @@
         <div class="cmd"><code>/octo:create-issue</code><span class="d">Issue from template</span></div>
         <div class="cmd"><code>/octo:create-pr</code><span class="d">One-shot issue → branch → PR</span></div>
         <div class="cmd"><code>/octo:merge</code><span class="d">Merge a reviewed PR (checks first)</span></div>
+        <div class="cmd"><code>/octo:fill-pr</code><span class="d">Fill the PR template from the diff</span></div>
         <div class="cmd"><code>/octo:checks</code><span class="d">View or re-run CI checks</span></div>
         <div class="cmd"><code>/octo:release</code><span class="d">Cut a release</span></div>
         <div class="cmd"><code>/octo:cleanup</code><span class="d">Delete merged branches</span></div>
@@ -172,13 +186,20 @@
 
   <section>
     <div class="wrap">
-      <span class="eyebrow">How they fit</span>
-      <h2>Front of house, back of house</h2>
-      <div class="fit">
-        <div class="box k"><h4>🐸 kaeru</h4><p>The non-tech person makes a change and submits it. Everything scary is hidden.</p></div>
-        <div class="arrow">→ PR →</div>
-        <div class="box o"><h4>🐙 octo</h4><p>The developer's GitHub machinery — templates, CI, merge — keeps the review flow running.</p></div>
-      </div>
+      <span class="eyebrow">The full flow</span>
+      <h2>One change, end to end</h2>
+      <p style="color:var(--ink-soft);max-width:56ch;">How a small edit travels from a non-technical person to a shipped, reviewed change — 🐸 kaeru hands off to 🐙 octo at the PR.</p>
+      <ol class="flow-steps">
+        <li class="k"><span class="actor">🐸 staff</span><code>/kaeru:start</code><span class="lbl">Open a fresh, safe workspace</span></li>
+        <li class="k"><span class="actor">🐸 staff</span><code>/kaeru:edit-text · edit-image · edit-color</code><span class="lbl">Make the change, in plain language</span></li>
+        <li class="k"><span class="actor">🐸 staff</span><code>/kaeru:preview</code><span class="lbl">See it live and confirm</span></li>
+        <li class="k"><span class="actor">🐸 staff</span><code>/kaeru:submit</code><span class="lbl">Checks pass → opens a PR (never merges)</span></li>
+        <li class="o"><span class="actor">🐙 octo</span><code>/octo:fill-pr</code><span class="lbl">Fill the PR template from the actual diff</span></li>
+        <li class="o"><span class="actor">🐙 octo</span><code>/octo:checks</code><span class="lbl">CI runs; git hooks guard lint / tests</span></li>
+        <li class="d"><span class="actor">👤 developer</span><span class="lbl">Reviews the rendered preview — pixels, not diffs</span></li>
+        <li class="o"><span class="actor">🐙 octo</span><code>/octo:merge</code><span class="lbl">Merge once green and approved</span></li>
+        <li class="o"><span class="actor">🐙 octo</span><code>/octo:release</code><span class="lbl">Ship it</span></li>
+      </ol>
     </div>
   </section>
 </main>
