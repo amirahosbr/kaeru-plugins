@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# octo pre-push — run tests before pushing.
+# Skip once with:  git push --no-verify
+set -e
+[ -f package.json ] || exit 0
+
+if command -v bun >/dev/null 2>&1 && [ -f bun.lock ]; then PM="bun run"
+elif command -v pnpm >/dev/null 2>&1 && [ -f pnpm-lock.yaml ]; then PM="pnpm"
+else PM="npm run"; fi
+
+if grep -q "\"test\"[[:space:]]*:" package.json; then echo "▶ test"; $PM test; fi
+
+echo "✓ octo pre-push passed"

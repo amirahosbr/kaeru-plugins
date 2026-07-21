@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# octo pre-commit — run lint + type-check before a commit.
+# Skip once with:  git commit --no-verify
+set -e
+[ -f package.json ] || exit 0
+
+if command -v bun >/dev/null 2>&1 && [ -f bun.lock ]; then PM="bun run"
+elif command -v pnpm >/dev/null 2>&1 && [ -f pnpm-lock.yaml ]; then PM="pnpm"
+else PM="npm run"; fi
+
+has() { grep -q "\"$1\"[[:space:]]*:" package.json; }
+
+if has lint;       then echo "▶ lint";        $PM lint; fi
+if has typecheck;  then echo "▶ typecheck";   $PM typecheck
+elif has check-types; then echo "▶ check-types"; $PM check-types; fi
+
+echo "✓ octo pre-commit passed"

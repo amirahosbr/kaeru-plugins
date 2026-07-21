@@ -16,6 +16,9 @@ Lets non-technical Japanese PMs safely edit **text, images, and colors** and sub
 | `/kaeru:fix` | PM | When checks fail, explain and fix the simple/safe ones (lint/format/typo) |
 | `/kaeru:undo` | PM | Undo the last change safely — easy to go back |
 | `/kaeru:switch` | PM | Switch to or resume another change you were working on |
+| `/kaeru:edit-color` | PM | Change a color (design-token values only) |
+| `/kaeru:resolve` | PM | Help with a merge conflict — safe ones only, else escalate |
+| `/kaeru:check-a11y` | PM | Check the change is easy for everyone (basic accessibility) |
 | `/kaeru:help` | PM | Explain an error gently + produce a memo for the dev |
 | `/kaeru:learn` | PM | Interactive guided tutorial — practice the whole flow |
 | `/kaeru:setup` | **Dev** | Run once per repo: detect framework, write `.kaeru/where.md` |

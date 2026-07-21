@@ -36,7 +36,17 @@ repo that has none of the templates yet. Bundled sources live in `${CLAUDE_PLUGI
    - `run-tests.yml` and `release.yml` ship with **placeholder** build/test/deploy steps to fill in.
    - The `release` branch is created automatically on the first release run.
 
-4. **Report** what was created (list the files), then point to next steps: create an issue with
+4. **Pre-commit / pre-push checks (optional).** If the user wants checks to run automatically
+   before every commit and push:
+   ```bash
+   mkdir -p .githooks
+   cp "${CLAUDE_PLUGIN_ROOT}/assets/githooks/"* .githooks/
+   chmod +x .githooks/*
+   git config core.hooksPath .githooks
+   ```
+   This runs `lint` + `typecheck` before a commit and `test` before a push (auto-detecting
+   bun / pnpm / npm; skipped once with `--no-verify`). Tell the user checks are now automatic.
+5. **Report** what was created (list the files), then point to next steps: create an issue with
    the `create-issue` skill, or run `/octo:create-pr` for the one-shot fallback.
 
 If the person isn't technical, keep it plain — don't dwell on git/workflow jargon.
