@@ -1,6 +1,5 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "enableAllProjectMcpServers": true,
   "permissions": {
     "allow": [
       "Bash(bun install)",
@@ -13,6 +12,11 @@
       "Bash(bun run typecheck)"
     ]
   },
+  "enableAllProjectMcpServers": true,
+  "enabledPlugins": {
+    "kaeru@kaeru-plugins": true,
+    "octo@kaeru-plugins": true
+  },
   "extraKnownMarketplaces": {
     "kaeru-plugins": {
       "source": {
@@ -20,8 +24,5 @@
         "repo": "amirahosbr/kaeru-plugins"
       }
     }
-  },
-  "enabledPlugins": {
-    "kaeru@kaeru-plugins": true
   }
 }
