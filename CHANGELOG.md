@@ -4,7 +4,19 @@ All notable changes to **kaeru-plugins** are documented here.
 Format based on [Keep a Changelog](https://keepachangelog.com/); each plugin is versioned
 in its own `plugin.json`. (GitHub Release notes are generated separately by release-drafter.)
 
+> **Bump the version in `plugin.json` in the same commit as the change.**
+> `claude plugin update` compares the declared version and stops at "already at
+> the latest version" when it matches, and there is no `--force` — so content
+> pushed without a bump never reaches anyone who has the plugin installed, no
+> matter how often they update. It is not a formality; it is the delivery
+> mechanism. CI enforces it (`plugin-version-guard.yml`).
+
 ## [Unreleased]
+
+## kaeru 0.2.0, octo 0.2.0
+
+Everything below sat unreleased on `main` behind an unchanged `0.1.0`, and so had
+never reached an installed copy.
 
 ### Added
 - **kaeru:** `/kaeru:status` — read CI checks, review state, and conflicts, explained in plain language (read-only).

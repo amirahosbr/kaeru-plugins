@@ -1,0 +1,70 @@
+# Fails a PR that changes a plugin without bumping its version.
+#
+# Installing a plugin copies it to ~/.claude/plugins/cache/<marketplace>/<name>/
+# <version> and records the version. `claude plugin update` compares the declared
+# version, stops at "already at the latest version" when it matches, and has no
+# --force. So a change merged without a bump is invisible to everyone who already
+# has the plugin: pulling the marketplace refreshes only the catalogue, never the
+# copy that runs.
+#
+# That is exactly what happened up to 0.1.0 — eleven commands and a full rewrite
+# sat on main for weeks while every installed copy stayed on the original eight.
+# Review didn't catch it because nothing in the diff looked wrong. This does.
+name: Plugin version guard
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  version-bumped:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Need the base commit to diff against, so no shallow clone.
+          fetch-depth: 0
+
+      - name: Every changed plugin declares a new version
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          failed=0
+
+          for dir in plugins/*/; do
+            name="$(basename "$dir")"
+            manifest="${dir}.claude-plugin/plugin.json"
+            [ -f "$manifest" ] || continue
+
+            # Anything under the plugin except the manifest itself: the manifest
+            # changing is the bump, not the content that requires one.
+            changed="$(git diff --name-only "$BASE" "$HEAD" -- "$dir" \
+              | grep -v "^${manifest}$" || true)"
+            [ -n "$changed" ] || continue
+
+            before="$(git show "$BASE:$manifest" 2>/dev/null \
+              | jq -r '.version' || echo "")"
+            after="$(jq -r '.version' "$manifest")"
+
+            # A brand-new plugin has no previous version to differ from.
+            if [ -z "$before" ] || [ "$before" = "null" ]; then
+              echo "new plugin $name at $after"
+              continue
+            fi
+
+            if [ "$before" = "$after" ]; then
+              echo "::error file=$manifest::$name changed but version is still $before. Bump it, or the change never reaches an installed copy (claude plugin update compares this field and there is no --force)."
+              echo "  files changed:"
+              echo "$changed" | sed 's/^/    /'
+              failed=1
+            else
+              echo "$name: $before -> $after"
+            fi
+          done
+
+          exit "$failed"
