@@ -13,6 +13,15 @@ in its own `plugin.json`. (GitHub Release notes are generated separately by rele
 
 ## [Unreleased]
 
+## kaeru 0.2.1
+
+### Security
+- The bundled Playwright MCP server is pinned to `@playwright/mcp@0.0.78` instead of
+  `@latest`. Kaeru installs and enables this plugin for you, and `@latest` meant the
+  package was resolved fresh from npm on every run — so whatever had been published
+  since ran on your machine, unreviewed. Pinning trades automatic upgrades for
+  knowing what executes; bumping it is now a visible, reviewable edit.
+
 ## kaeru 0.2.0, octo 0.2.0
 
 Everything below sat unreleased on `main` behind an unchanged `0.1.0`, and so had
