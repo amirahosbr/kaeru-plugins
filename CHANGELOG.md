@@ -13,6 +13,14 @@ in its own `plugin.json`. (GitHub Release notes are generated separately by rele
 
 ## [Unreleased]
 
+### Docs
+- **Repo:** `CLAUDE.md` reoriented around the marketplace — where `plugins/kaeru`
+  and `plugins/octo` live, naming (`kaeru-plugins`, `gh-flow` → `octo`), and the
+  canonical reads (`README.md`, `plugins/kaeru/README.md`, `docs/kaeru-plugins.html`,
+  this changelog).
+- **Repo:** this changelog backfilled so the `0.2.0` notes match what actually
+  landed on `main` (kaeru a11y/color/resolve; full octo command set; `/octo:fill-pr`).
+
 ## kaeru 0.2.1
 
 ### Security
@@ -25,20 +33,36 @@ in its own `plugin.json`. (GitHub Release notes are generated separately by rele
 ## kaeru 0.2.0, octo 0.2.0
 
 Everything below sat unreleased on `main` behind an unchanged `0.1.0`, and so had
-never reached an installed copy.
+never reached an installed copy. Released together when versions were bumped and
+the version-guard CI was added.
 
 ### Added
 - **kaeru:** `/kaeru:status` — read CI checks, review state, and conflicts, explained in plain language (read-only).
 - **kaeru:** `/kaeru:fix` — explain failing checks and fix the simple, safe ones (lint / format / typo); escalates anything risky to the developer.
 - **kaeru:** `/kaeru:undo` — undo the last change safely; never rewrites pushed history, never force-pushes.
 - **kaeru:** `/kaeru:switch` — resume another change; work is shown by PR title, and unsaved edits are kept safe (stash) before switching.
+- **kaeru:** `/kaeru:edit-color` — change a color (design-token values only).
+- **kaeru:** `/kaeru:resolve` — help with a merge conflict; resolve safe ones, escalate the rest.
+- **kaeru:** `/kaeru:check-a11y` — basic accessibility check in plain language (alt text, contrast, labels); small safe text fixes only.
 - **octo:** `/octo:setup` — scaffold `.github` issue + PR templates (and, optionally, the auto-PR / release workflows) into any repo. Canonical templates are bundled as plugin assets.
+- **octo:** `/octo:init` — bootstrap a repo (git init, first commit, create GitHub repo, push; optionally run setup).
+- **octo:** `/octo:config` + `/octo:whoami` — set up and show git + GitHub identity.
+- **octo:** `/octo:merge` — merge a reviewed PR after verifying CI green + approval.
+- **octo:** `/octo:fill-pr` — fill the PR description from the actual diff, following the repo's PR template (honest checklist; no fabrication). `/octo:merge` offers this when the body is empty.
+- **octo:** `/octo:checks` — view or re-run CI checks.
+- **octo:** `/octo:release` — cut a release via the repo's release flow.
+- **octo:** `/octo:cleanup` — list/delete branches whose PRs are already merged.
+- **octo:** `/octo:sync-templates` — (maintainer) copy canonical `.github/` templates into `plugins/octo/assets/` so setup stays current.
+- **Repo:** `docs/kaeru-plugins.html` — one-page marketplace overview (command counts, install, end-to-end kaeru → PR → octo → merge → release flow).
 
 ### Changed
-- **kaeru:** command sources rewritten in English with **language-mirroring** — the agent replies in the user's own language (Japanese or English); Japanese is produced at runtime, not hardcoded. Maintainable by a non-Japanese-reading developer.
-- **kaeru:** uniform guardrail coverage across all 12 commands (explicit `Rules` blocks, or safe-by-nature notes for read-only / dev-only / tutorial commands).
-- **octo:** `create-issue` and `/octo:create-pr` now detect a missing template set and offer `/octo:setup` instead of bailing out.
-- **Repo:** renamed `kaeru` → `kaeru-plugins` (it's a marketplace hosting `kaeru` + `octo`, not a single plugin). Internal references updated (settings, both `plugin.json`, README, create-issue skill).
+- **Naming:** plugin **`gh-flow` → `octo`** (commands `/octo:*`, install `octo@kaeru-plugins`, source `plugins/octo/`).
+- **Repo:** renamed **`kaeru` → `kaeru-plugins`** (marketplace hosting `kaeru` + `octo`, not a single plugin). Internal references updated (settings, both `plugin.json`, README, create-issue skill).
+- **kaeru:** command sources rewritten in English with **language-mirroring** — the agent replies in the user's own language (Japanese or English); Japanese is produced at runtime, not hardcoded.
+- **kaeru:** uniform guardrail coverage across commands (explicit `Rules` blocks, or safe-by-nature notes for read-only / dev-only / tutorial commands). Command surface grew to **15** `/kaeru:*` commands.
+- **kaeru:** `/kaeru:submit` runs the project's checks first (lint / type-check from `.kaeru/where.md`); bundled pre-commit / pre-push hooks support auto-detecting bun / pnpm / npm.
+- **octo:** `create-issue` and `/octo:create-pr` now detect a missing template set and offer `/octo:setup` instead of bailing out. Octo is a full GitHub + CI/CD toolkit (**12** commands + `create-issue` skill), not only the PR fallback.
+- **Repo:** root `README.md` rewritten as a plain "how to use" guide for the marketplace.
 
 ## kaeru 0.1.0 — Kaeru plugin (MVP)
 
@@ -49,6 +73,8 @@ never reached an installed copy.
 - Playwright MCP bundled for visual before/after preview.
 
 ## octo 0.1.0 — GitHub issue-to-PR flow
+
+*(Shipped originally as **`gh-flow` 0.1.0**; renamed to **octo** before the 0.2.0 release.)*
 
 ### Added
 - `create-issue` skill — create a GitHub issue from the repo's templates.
