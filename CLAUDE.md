@@ -40,8 +40,9 @@ plugins/octo/
   .claude-plugin/plugin.json   # name + version (bump on every shippable change)
   commands/                    # /octo:* slash commands
   skills/create-issue/         # create-issue skill (normal path)
+  skills/setup-cicd/           # full CI/CD scaffold (auto path; same as /octo:setup with-workflows)
   assets/                      # bundled .github templates + workflows + githooks
-                               #   (what /octo:setup copies into other repos)
+                               #   (what /octo:setup and setup-cicd copy into other repos)
 ```
 
 Installed copies for Claude Code live under

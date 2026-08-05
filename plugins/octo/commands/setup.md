@@ -8,6 +8,8 @@ allowed-tools: Bash(mkdir:*), Bash(cp:*), Bash(ls:*), Bash(test:*), Bash(echo:*)
 
 Scaffolds this repo so the `create-issue` skill and `/octo:create-pr` work — even on a
 repo that has none of the templates yet. Bundled sources live in `${CLAUDE_PLUGIN_ROOT}/assets/`.
+For the conversational / auto path that installs the **full** CI/CD pack (templates +
+workflows + release config), use the `setup-cicd` skill (same assets as `with-workflows`).
 
 ## Steps
 

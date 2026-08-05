@@ -15,7 +15,8 @@ This template's issue templates live in `.github/ISSUE_TEMPLATE/`:
 - `TMPL_06_IDEA.yml` - idea or proposal, no PR follows (label: idea)
 
 If the repo does not have these templates, don't stop — offer to run `/octo:setup` first
-(it scaffolds the issue + PR templates, and optionally the auto-PR workflows). Once
+(it scaffolds the issue + PR templates, and optionally the auto-PR workflows), or the
+`setup-cicd` skill for the full pack (templates + workflows + release config). Once
 scaffolded, continue below.
 
 ## Steps

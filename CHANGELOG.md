@@ -21,6 +21,14 @@ in its own `plugin.json`. (GitHub Release notes are generated separately by rele
 - **Repo:** this changelog backfilled so the `0.2.0` notes match what actually
   landed on `main` (kaeru a11y/color/resolve; full octo command set; `/octo:fill-pr`).
 
+## octo 0.2.1
+
+### Added
+- **octo:** `setup-cicd` skill — scaffold the full issue-driven GitHub CI/CD pack
+  (issue templates, PR template, Actions workflows, release-drafter + RELEASE_PR_TEMPLATE;
+  optional githooks) into a repo that has no `.github` yet. Conversational / auto
+  path for empty repos; slash equivalent remains `/octo:setup with-workflows`.
+
 ## kaeru 0.2.1
 
 ### Security
