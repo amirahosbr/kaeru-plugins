@@ -13,6 +13,13 @@ in its own `plugin.json`. (GitHub Release notes are generated separately by rele
 
 ## [Unreleased]
 
+### Changed
+- **octo 0.2.2:** `/octo:release` now drafts the public release notes in plain
+  language for makers — what changed for the person, where to find it, New /
+  Better / Fixed, under ten lines, ending with the ship date — from the
+  changelog's Unreleased section, and shows the draft before anything is
+  published. The repo's own `CHANGELOG.md` entry stays as written.
+
 ### Docs
 - **Repo:** `CLAUDE.md` reoriented around the marketplace — where `plugins/kaeru`
   and `plugins/octo` live, naming (`kaeru-plugins`, `gh-flow` → `octo`), and the
