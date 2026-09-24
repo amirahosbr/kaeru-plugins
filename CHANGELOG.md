@@ -13,7 +13,26 @@ in its own `plugin.json`. (GitHub Release notes are generated separately by rele
 
 ## [Unreleased]
 
+### Added
+- **kaeru 0.4.0:** `/kaeru:check` — the look at your own change that happens before
+  anyone else's time is spent on it. It runs the project's lint, types and tests,
+  then does the three things those cannot: opens each changed page in a real
+  browser and reads the console, where a hydration warning is the only place it
+  ever appears; clicks the thing that changed and says where it went; and, when
+  the change touches something that runs on the server, answers the two questions
+  a reviewer asks anyway — what happens when it fails, and does it run on every
+  request. Anything it could not settle becomes a note in the person's own words,
+  which `/kaeru:submit` carries into the pull request under 「気になっているところ」,
+  because a written doubt points a reviewer at the part needing their judgement
+  and a confident silence makes them hunt for it. It only looks: fixing stays
+  `/kaeru:fix`, and a check that was skipped is reported as skipped rather than
+  ticked.
+
 ### Changed
+- **kaeru 0.4.0:** `/kaeru:submit` runs those same checks before it commits, not
+  just lint and type-check, and stops on anything unresolved. The person can still
+  overrule it — that is their call — but it is made knowingly, and a check that
+  only runs when somebody remembers to ask for it is one that stops running.
 - **octo 0.2.2:** `/octo:release` now drafts the public release notes in plain
   language for makers — what changed for the person, where to find it, New /
   Better / Fixed, under ten lines, ending with the ship date — from the
