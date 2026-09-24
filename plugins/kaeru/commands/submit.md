@@ -11,9 +11,21 @@ non-technical.
 - Never push directly to `main`. The PR base is always `main`.
 
 ## Before submitting
-Run the project's checks first — lint / type-check (from `.kaeru/where.md`). If anything
-fails, **stop** — don't commit. Explain it plainly and suggest `/kaeru:fix`. (If the repo has
-octo's git hooks installed, these run automatically on commit/push too.)
+
+Run the `/kaeru:check` checks first — all of them, not only lint and type-check: the
+browser console on the changed pages, clicking what changed, and the two questions about
+anything that runs on the server. Show its table.
+
+If anything fails or comes back ⚠️, **stop** — don't commit. Explain it plainly and suggest
+`/kaeru:fix`. The person can overrule you and submit anyway, and that is their call to make,
+but it is made knowingly rather than by not being told.
+
+This runs here as well as in its own command on purpose: the check that only happens when
+somebody remembers to ask for it is the check that stops happening. (If the repo has octo's
+git hooks installed, lint and type-check run on commit/push too.)
+
+Carry anything `/kaeru:check` left as "not sure about" into the PR body — see **Writing the
+pull request** below.
 
 ## Steps
 1. Review the change and write a clear commit message.
@@ -52,6 +64,11 @@ temp files — that keeps it inside this command's allowed tools). Shape, Japane
 ## 変更前 → 変更後
 <per the table below>
 
+## 気になっているところ
+<only when /kaeru:check left notes, or the person says they are unsure. One line each,
+in their own words. Leave the whole section out when there is nothing — an empty
+heading reads as "I checked and found nothing", which is a different claim.>
+
 ---
 <details><summary>技術的な詳細（開発者向け）</summary>
 
@@ -62,7 +79,11 @@ temp files — that keeps it inside this command's allowed tools). Shape, Japane
 </details>
 ```
 
-English mirrors it: **What changed / Check it / Before → After / Technical details**.
+English mirrors it: **What changed / Check it / Before → After / What I'm unsure about /
+Technical details**.
+
+A doubt written down is worth more to a reviewer than a confident silence: it points them
+at the one part that needs their judgement instead of making them find it.
 
 ### What goes in 変更前 → 変更後
 

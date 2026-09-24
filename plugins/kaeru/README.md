@@ -11,7 +11,8 @@ Lets non-technical Japanese PMs safely edit **text, images, and colors** and sub
 | `/kaeru:edit-text` | PM | Change wording/copy |
 | `/kaeru:edit-image` | PM | Swap an image |
 | `/kaeru:preview` | PM | Run the dev server + open the browser to self-check |
-| `/kaeru:submit` | PM | Commit, push, open a PR to `main` (does **not** merge) |
+| `/kaeru:check` | PM | Before submitting: browser console, click what changed, what happens if it fails |
+| `/kaeru:submit` | PM | Commit, push, open a PR to `main` (does **not** merge) — runs the checks first |
 | `/kaeru:status` | PM | Check if the change is OK — CI checks, review, conflicts, in plain words |
 | `/kaeru:fix` | PM | When checks fail, explain and fix the simple/safe ones (lint/format/typo) |
 | `/kaeru:undo` | PM | Undo the last change safely — easy to go back |

@@ -52,6 +52,7 @@ Still inside the project, just type these one at a time:
 /kaeru:start              → opens a fresh, safe workspace
 /kaeru:edit-text          → say what to change, e.g. "change the homepage heading to Welcome"
 /kaeru:preview            → see the change live in the browser
+/kaeru:check              → checks your own change before anyone else's time is spent on it
 /kaeru:submit             → sends it to the developer to review (opens a PR — never merges)
 ```
 
