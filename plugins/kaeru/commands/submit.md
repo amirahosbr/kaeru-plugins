@@ -1,6 +1,6 @@
 ---
 description: Submit the change for review — open a pull request (never merges)
-allowed-tools: Bash(git add:*), Bash(git commit:*), Bash(git push:*), Bash(git branch:*), Bash(gh pr create:*)
+allowed-tools: Bash(git add:*), Bash(git commit:*), Bash(git push:*), Bash(git branch:*), Bash(git diff:*), Bash(gh pr create:*), Bash(gh repo view:*)
 ---
 
 Reply to the user in their own language (Japanese or English). Keep it simple and
@@ -19,7 +19,73 @@ octo's git hooks installed, these run automatically on commit/push too.)
 1. Review the change and write a clear commit message.
 2. `git add -A && git commit`.
 3. `git push -u origin <current-branch>`.
-4. Open the PR with `gh pr create --base main` — a short, plain title and body describing
-   what changed. **Never merge.**
+4. Open the PR with `gh pr create --base main`, using the title and body described below.
+   **Never merge.**
 5. Give the user the PR URL and tell them: the developer will review it, and the Vercel
-   preview URL will appear in the PR.
+   preview URL will appear as a comment on the PR.
+
+## Writing the pull request
+
+The person who approves this is often reading it on a phone, and may not read code. The PR
+has to be understandable on its own. Write the title and body **in the user's own language**
+— the same language-mirroring rule as the reply.
+
+### Title
+
+Plain language, what changed — `トップページの見出しを変更`, not `fix(home): update h1 copy`.
+No conventional-commit prefix, no file paths: this is a client's website, not a versioned
+package.
+
+### Body
+
+Pass it as a single quoted multi-line `--body "…"` string (no command substitution, no
+temp files — that keeps it inside this command's allowed tools). Shape, Japanese shown:
+
+```markdown
+## 何を変えたか
+<one sentence, in the user's own words. No jargon, no file paths.>
+
+## 確認する
+📄 <page path, e.g. /about>
+▶ プレビュー: このPRの下のコメントに表示されます（Vercel）
+
+## 変更前 → 変更後
+<per the table below>
+
+---
+<details><summary>技術的な詳細（開発者向け）</summary>
+
+- ブランチ: `<branch>`
+- 変更ファイル: `<n>` 件
+- `<path/to/file.tsx>`
+
+</details>
+```
+
+English mirrors it: **What changed / Check it / Before → After / Technical details**.
+
+### What goes in 変更前 → 変更後
+
+| Edit type | Show |
+|---|---|
+| text | Both strings, quoted — **変更前:**「old」 / **変更後:**「new」 |
+| color | The token name and both values — `--brand: #1B7F5A → #14654A` |
+| image | Both images, embedded (see below) — never just filenames |
+
+For images, use absolute URLs — relative paths do **not** render in a PR body. Get the repo
+with `gh repo view --json nameWithOwner -q .nameWithOwner`, then:
+
+- 変更前 — `![変更前](https://github.com/<owner>/<repo>/raw/main/<path>)`
+- 変更後 — `![変更後](https://github.com/<owner>/<repo>/raw/<branch>/<path>)`
+
+On a **private** repo GitHub will not render those for the reviewer. Then name the file
+instead and add one line: 「画像は「Files changed」タブで見比べられます」.
+
+### Never put in the body
+
+- **A raw diff, a patch, or unified-diff output.** Showing one to a non-technical reader is
+  a product failure. The real diff stays one tap away in the Files tab.
+- **A preview URL.** It does not exist yet at `gh pr create` time — the Vercel bot posts it
+  as a comment after the PR opens. Point at the comment; never invent a URL.
+- **Anything technical outside the collapsed `<details>`** — branch names, file paths, and
+  file counts live in there, present for the developer and invisible by default.

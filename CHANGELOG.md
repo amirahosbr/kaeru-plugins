@@ -28,6 +28,30 @@ in its own `plugin.json`. (GitHub Release notes are generated separately by rele
 - **Repo:** this changelog backfilled so the `0.2.0` notes match what actually
   landed on `main` (kaeru a11y/color/resolve; full octo command set; `/octo:fill-pr`).
 
+## kaeru 0.3.0
+
+### Changed
+- **kaeru:** `/kaeru:submit` now writes a **plain-language pull request** instead of "a short,
+  plain title and body". The PR is the approval surface, and the person approving it is often
+  reading it on a phone and does not read code — so the body leads with *what changed, in one
+  sentence, in the user's own words*, then the page to check, then a **変更前 → 変更後** block
+  (quoted strings for text, token name + both values for color, embedded images for an image
+  swap). Branch, file count, and file paths move into a collapsed `<details>` — present for the
+  developer, invisible to the PM by default. Raw diffs are explicitly banned from the body.
+  Title is plain language too — `トップページの見出しを変更`, not `fix(home): update h1 copy`.
+- **kaeru:** `/kaeru:submit` no longer implies the preview URL can be in the PR body. It does
+  not exist at `gh pr create` time (the Vercel bot comments it afterwards), so the body points
+  at the comment rather than inventing a URL.
+
+  This is the whole of Kaeru's mobile answer for now: GitHub Mobile already renders the PR and
+  its approvals already satisfy branch protection, so the gap was comprehension, not device.
+  (`kaeru-hq/research/uiux/implementable/UX-08-plain-language-pr-body.md`.)
+
+### Security
+- **kaeru:** `/kaeru:submit` gains `gh repo view` (read-only, for the `owner/repo` needed to
+  embed before/after images) and `git diff` (to describe the change). Still no `gh pr merge`,
+  ever — the plugin does not merge.
+
 ## octo 0.2.1
 
 ### Added
