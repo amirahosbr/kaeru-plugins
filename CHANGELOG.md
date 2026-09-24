@@ -21,6 +21,10 @@ in its own `plugin.json`. (GitHub Release notes are generated separately by rele
   published. The repo's own `CHANGELOG.md` entry stays as written.
 
 ### Docs
+- **Spec:** [`docs/specs/2026-09-24-kaeru-review.md`](./docs/specs/2026-09-24-kaeru-review.md)
+  — kaeru-review: one permanent, access-controlled page per review (Cloudflare Access +
+  Worker + R2), a shared `review.json` contract, and the planned `/octo:report`,
+  `/octo:share` and `/kaeru:apply-review` commands.
 - **Repo:** `CLAUDE.md` reoriented around the marketplace — where `plugins/kaeru`
   and `plugins/octo` live, naming (`kaeru-plugins`, `gh-flow` → `octo`), and the
   canonical reads (`README.md`, `plugins/kaeru/README.md`, `docs/kaeru-plugins.html`,
